@@ -18,6 +18,14 @@ class Airport {
         hangar.add(plane);
     }
 
+    public void takeOff(Plane plane) {
+        hangar.remove(plane);
+    }
+
+    public boolean contains(Plane plane) {
+        return hangar().contains(plane);
+    }
+
     private boolean full() {
         return hangar.size() >= DEFAULT_CAPACITY;
     }
