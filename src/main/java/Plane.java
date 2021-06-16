@@ -4,4 +4,8 @@ class Plane {
     Plane() {
         this.status = "Ground";
     }
+
+    public String takeOff() {
+        return this.status = "Air";
+    }
 }

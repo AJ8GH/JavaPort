@@ -9,4 +9,12 @@ class PlaneTest {
         Plane plane = new Plane();
         Assertions.assertEquals(plane.status, "Ground");
     }
+
+    @Test
+    @DisplayName("It can be taken off")
+    void takeOffChangesStatus() {
+        Plane plane = new Plane();
+        plane.takeOff();
+        Assertions.assertEquals(plane.status, "Air");
+    }
 }
