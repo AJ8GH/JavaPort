@@ -5,13 +5,13 @@ class Plane {
         this.status = "Ground";
     }
 
-    public String takeOff() {
-        return this.status = "Air";
+    public void takeOff() throws TakeOffException {
+        if (status.equals("Air")) throw new TakeOffException();
+        this.status = "Air";
     }
 
-    public String land() throws LandingException {
+    public void land() throws LandingException {
         if (status.equals("Ground")) throw new LandingException();
-
-        return this.status = "Ground";
+        this.status = "Ground";
     }
 }

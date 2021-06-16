@@ -13,7 +13,7 @@ class PlaneTest {
 
     @Test
     @DisplayName("It can be taken off")
-    void takeOffChangesStatus() {
+    void takeOffChangesStatus() throws TakeOffException {
         Plane plane = new Plane();
 
         plane.takeOff();
@@ -22,7 +22,7 @@ class PlaneTest {
 
     @Test
     @DisplayName("It can be landed")
-    void landChangesStatusToGround() throws LandingException {
+    void landChangesStatusToGround() throws LandingException, TakeOffException {
         Plane plane = new Plane();
 
         plane.takeOff();
@@ -37,5 +37,13 @@ class PlaneTest {
     void landThrowsErrorWhenGrounded() {
         Plane plane = new Plane();
         Assertions.assertThrows(LandingException.class, plane::land);
+    }
+
+    @Test
+    @DisplayName("It throws error when trying to take off an airborne plane")
+    void takeOffThrowsErrorWhenAirborne() throws TakeOffException {
+        Plane plane = new Plane();
+        plane.takeOff();
+        Assertions.assertThrows(TakeOffException.class, plane::takeOff);
     }
 }
