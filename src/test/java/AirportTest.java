@@ -1,4 +1,3 @@
-import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,14 +35,12 @@ class AirportTest {
 
         Plane plane = mock(Plane.class);
 
-        Assertions.assertThrows(CapacityException.class, () -> {
-            airport.land(plane);
-        });
+        Assertions.assertThrows(CapacityException.class, () -> airport.land(plane));
     }
 
     @Test
     @DisplayName("Plane is removed from hangar after take off")
-    void successfulTakeOff() throws CapacityException {
+    void successfulTakeOff() throws CapacityException, AirportException {
         Airport airport = new Airport();
         Plane plane = mock(Plane.class);
 
@@ -52,5 +49,17 @@ class AirportTest {
 
         airport.takeOff(plane);
         Assertions.assertFalse(airport.contains(plane));
+    }
+
+    @Test
+    void takeOffWhenPlaneNotInAirport() throws CapacityException {
+        Airport airport1 = new Airport();
+        Airport airport2 = new Airport();
+
+        Plane plane = mock(Plane.class);
+
+        airport1.land(plane);
+
+        Assertions.assertThrows(AirportException.class, () -> airport2.takeOff(plane));
     }
 }

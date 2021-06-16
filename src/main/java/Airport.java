@@ -18,7 +18,8 @@ class Airport {
         hangar.add(plane);
     }
 
-    public void takeOff(Plane plane) {
+    public void takeOff(Plane plane) throws AirportException {
+        if (!contains(plane)) throw new AirportException();
         hangar.remove(plane);
     }
 
