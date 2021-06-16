@@ -10,8 +10,9 @@ class Plane {
         this.status = "Air";
     }
 
-    public void land() throws LandingException {
+    public void land(Airport airport) throws LandingException, CapacityException {
         if (status.equals("Ground")) throw new LandingException();
+        airport.land(this);
         this.status = "Ground";
     }
 }
