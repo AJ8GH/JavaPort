@@ -3,11 +3,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class PlaneTest {
+
     @Test
     @DisplayName("It is grounded by default")
     void statusIsGroundByDefault() {
         Plane plane = new Plane();
-        
         Assertions.assertEquals(plane.status, "Ground");
     }
 
@@ -22,7 +22,7 @@ class PlaneTest {
 
     @Test
     @DisplayName("It can be landed")
-    void landChangesStatusToGround() {
+    void landChangesStatusToGround() throws LandingException {
         Plane plane = new Plane();
 
         plane.takeOff();
@@ -30,5 +30,12 @@ class PlaneTest {
 
         plane.land();
         Assertions.assertEquals(plane.status, "Ground");
+    }
+
+    @Test
+    @DisplayName("It throws error when trying to land a grounded plane")
+    void landThrowsErrorWhenGrounded() {
+        Plane plane = new Plane();
+        Assertions.assertThrows(LandingException.class, plane::land);
     }
 }
