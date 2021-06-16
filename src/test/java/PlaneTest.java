@@ -7,6 +7,7 @@ class PlaneTest {
     @DisplayName("It is grounded by default")
     void statusIsGroundByDefault() {
         Plane plane = new Plane();
+        
         Assertions.assertEquals(plane.status, "Ground");
     }
 
@@ -14,7 +15,20 @@ class PlaneTest {
     @DisplayName("It can be taken off")
     void takeOffChangesStatus() {
         Plane plane = new Plane();
+
         plane.takeOff();
         Assertions.assertEquals(plane.status, "Air");
+    }
+
+    @Test
+    @DisplayName("It can be landed")
+    void landChangesStatusToGround() {
+        Plane plane = new Plane();
+
+        plane.takeOff();
+        Assertions.assertEquals(plane.status, "Air");
+
+        plane.land();
+        Assertions.assertEquals(plane.status, "Ground");
     }
 }

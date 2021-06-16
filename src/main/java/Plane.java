@@ -8,4 +8,8 @@ class Plane {
     public String takeOff() {
         return this.status = "Air";
     }
+
+    public String land() {
+        return this.status = "Ground";
+    }
 }
