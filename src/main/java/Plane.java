@@ -2,11 +2,12 @@ class Plane {
     String status;
 
     Plane() {
-        this.status = "Ground";
+        this.status = "Air";
     }
 
-    public void takeOff() throws TakeOffException {
+    public void takeOff(Airport airport) throws TakeOffException, AirportException {
         if (status.equals("Air")) throw new TakeOffException();
+        airport.takeOff(this);
         this.status = "Air";
     }
 
