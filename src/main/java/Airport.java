@@ -7,4 +7,8 @@ class Airport {
     Airport() {
         this.hangar = new ArrayList<>();
     }
+
+    public void land(Plane plane) {
+        hangar.add(plane);
+    }
 }
