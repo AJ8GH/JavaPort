@@ -12,7 +12,8 @@ class Airport {
         return this.hangar;
     }
 
-    public void land(Plane plane) {
+    public void land(Plane plane) throws CapacityException {
+        if (hangar.size() >= 50) throw new CapacityException();
         hangar.add(plane);
     }
 }
