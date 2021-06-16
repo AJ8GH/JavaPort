@@ -9,7 +9,7 @@ class AirportTest {
     @DisplayName("Hangar is empty by default")
     void hangarIsEmptyByDefault() {
         Airport airport = new Airport();
-        Assertions.assertEquals(airport.hangar.size(), 0);
+        Assertions.assertEquals(airport.hangar().size(), 0);
     }
 
     @Test
@@ -19,6 +19,6 @@ class AirportTest {
         Plane plane = mock(Plane.class);
 
         airport.land(plane);
-        Assertions.assertTrue(airport.hangar.contains(plane));
+        Assertions.assertTrue(airport.hangar().contains(plane));
     }
 }
