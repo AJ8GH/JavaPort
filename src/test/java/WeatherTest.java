@@ -8,16 +8,14 @@ class WeatherTest {
     @Test
     @DisplayName("#forecast() - sunny when pressure is low")
     void sunnyForecast() {
-        Random random = new Random(1);
-        Weather weather = new Weather(random);
+        Weather weather = new Weather(new Random(1));
         Assertions.assertEquals(weather.forecast(), "Sunny");
     }
 
     @Test
     @DisplayName("#forecast() - stormy when pressure is low")
     void stormyForecast() {
-        Random random = new Random(20);
-        Weather weather = new Weather(random);
+        Weather weather = new Weather(new Random(20));
         Assertions.assertEquals(weather.forecast(), "Stormy");
     }
 }

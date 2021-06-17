@@ -14,7 +14,7 @@ class PlaneTest {
 
     @Test
     @DisplayName("#land() - changes status to Ground")
-    void landChangesStatusToGround() throws LandingException, CapacityException {
+    void landChangesStatusToGround() throws LandingException, CapacityException, WeatherException {
         Plane plane = new Plane();
         Airport airport = mock(Airport.class);
 
@@ -26,7 +26,7 @@ class PlaneTest {
 
     @Test
     @DisplayName("#land() - throws error when plane is grounded")
-    void landThrowsErrorWhenGrounded() throws LandingException, CapacityException {
+    void landThrowsErrorWhenGrounded() throws LandingException, CapacityException, WeatherException {
         Plane plane = new Plane();
         Airport airport = mock(Airport.class);
 
@@ -37,7 +37,7 @@ class PlaneTest {
 
     @Test
     @DisplayName("#land() - makes land method call to airport")
-    void landCallsLandMethodToAirport() throws CapacityException, LandingException {
+    void landCallsLandMethodToAirport() throws CapacityException, LandingException, WeatherException {
         Plane plane = new Plane();
         Airport airport = mock(Airport.class);
 
@@ -48,7 +48,7 @@ class PlaneTest {
 
     @Test
     @DisplayName("#takeOff() - changes status to Air")
-    void takeOffChangesStatus() throws TakeOffException, LandingException, CapacityException, AirportException {
+    void takeOffChangesStatus() throws TakeOffException, LandingException, CapacityException, AirportException, WeatherException {
         Plane plane = new Plane();
         Airport airport = mock(Airport.class);
 
@@ -70,7 +70,7 @@ class PlaneTest {
 
     @Test
     @DisplayName("#takeOff() - makes take off method call to airport")
-    void takeOffCallsTakeOffToAirport() throws LandingException, CapacityException, AirportException, TakeOffException {
+    void takeOffCallsTakeOffToAirport() throws LandingException, CapacityException, AirportException, TakeOffException, WeatherException {
         Plane plane = new Plane();
         Airport airport = mock(Airport.class);
 

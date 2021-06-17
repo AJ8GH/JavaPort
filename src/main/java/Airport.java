@@ -3,9 +3,11 @@ import java.util.List;
 
 class Airport {
     private final List<Plane> hangar;
+    private final Weather weather;
     private final int DEFAULT_CAPACITY = 50;
 
-    Airport() {
+    Airport(Weather weather) {
+        this.weather = weather;
         this.hangar = new ArrayList<>();
     }
 
@@ -13,13 +15,15 @@ class Airport {
         return this.hangar;
     }
 
-    public void land(Plane plane) throws CapacityException {
+    public void land(Plane plane) throws CapacityException, WeatherException {
         if (full()) throw new CapacityException();
+        if (weather.forecast().equals("Stormy")) throw new WeatherException();
         hangar.add(plane);
     }
 
-    public void takeOff(Plane plane) throws AirportException {
+    public void takeOff(Plane plane) throws AirportException, WeatherException {
         if (!contains(plane)) throw new AirportException();
+        if (weather.forecast().equals("Stormy")) throw new WeatherException();
         hangar.remove(plane);
     }
 
