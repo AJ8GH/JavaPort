@@ -9,7 +9,7 @@ class PlaneTest {
     @DisplayName("#status - It is Air by default")
     void statusIsGroundByDefault() {
         Plane plane = new Plane();
-        Assertions.assertEquals(plane.status, "Air");
+        Assertions.assertEquals("Air", plane.status());
     }
 
     @Test
@@ -20,7 +20,7 @@ class PlaneTest {
 
         plane.land(airport);
 
-        Assertions.assertEquals(plane.status, "Ground");
+        Assertions.assertEquals("Ground", plane.status());
     }
 
 
@@ -53,10 +53,10 @@ class PlaneTest {
         Airport airport = mock(Airport.class);
 
         plane.land(airport);
-        Assertions.assertEquals(plane.status, "Ground");
+        Assertions.assertEquals("Ground", plane.status());
 
         plane.takeOff(airport);
-        Assertions.assertEquals(plane.status, "Air");
+        Assertions.assertEquals("Air", plane.status());
     }
 
     @Test

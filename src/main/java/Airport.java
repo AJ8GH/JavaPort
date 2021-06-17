@@ -12,7 +12,7 @@ class Airport {
     }
 
     public List<Plane> hangar() {
-        return this.hangar;
+        return hangar;
     }
 
     public void land(Plane plane) throws CapacityException, WeatherException {

@@ -1,8 +1,12 @@
 class Plane {
-    String status;
+    private String status;
 
     Plane() {
         this.status = "Air";
+    }
+
+    public String status() {
+        return status;
     }
 
     public void takeOff(Airport airport)

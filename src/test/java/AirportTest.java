@@ -11,7 +11,7 @@ class AirportTest {
         Weather weather = mock(Weather.class);
         Airport airport = new Airport(weather);
 
-        Assertions.assertEquals(airport.hangar().size(), 0);
+        Assertions.assertEquals(0, airport.hangar().size());
     }
 
     @Test
@@ -89,7 +89,7 @@ class AirportTest {
 
     @Test
     @DisplayName("#land() - exception thrown if weather is stormy")
-    void landWhenWeatherStormy() throws WeatherException, CapacityException {
+    void landWhenWeatherStormy() {
         Weather weather = mock(Weather.class);
         Airport airport = new Airport(weather);
         Plane plane = mock(Plane.class);
