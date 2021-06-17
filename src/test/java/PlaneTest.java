@@ -6,14 +6,14 @@ import static org.mockito.Mockito.*;
 class PlaneTest {
 
     @Test
-    @DisplayName("It is airborne by default")
+    @DisplayName("#status - It is Air by default")
     void statusIsGroundByDefault() {
         Plane plane = new Plane();
         Assertions.assertEquals(plane.status, "Air");
     }
 
     @Test
-    @DisplayName("It can be landed")
+    @DisplayName("#land() - changes status to Ground")
     void landChangesStatusToGround() throws LandingException, CapacityException {
         Plane plane = new Plane();
         Airport airport = mock(Airport.class);
@@ -23,8 +23,31 @@ class PlaneTest {
         Assertions.assertEquals(plane.status, "Ground");
     }
 
+
     @Test
-    @DisplayName("It can be taken off")
+    @DisplayName("#land() - throws error when plane is grounded")
+    void landThrowsErrorWhenGrounded() throws LandingException, CapacityException {
+        Plane plane = new Plane();
+        Airport airport = mock(Airport.class);
+
+        plane.land(airport);
+
+        Assertions.assertThrows(LandingException.class, () -> plane.land(airport));
+    }
+
+    @Test
+    @DisplayName("#land() - makes land method call to airport")
+    void landCallsLandMethodToAirport() throws CapacityException, LandingException {
+        Plane plane = new Plane();
+        Airport airport = mock(Airport.class);
+
+        plane.land(airport);
+
+        verify(airport).land(plane);
+    }
+
+    @Test
+    @DisplayName("#takeOff() - changes status to Air")
     void takeOffChangesStatus() throws TakeOffException, LandingException, CapacityException, AirportException {
         Plane plane = new Plane();
         Airport airport = mock(Airport.class);
@@ -37,18 +60,7 @@ class PlaneTest {
     }
 
     @Test
-    @DisplayName("It throws error when trying to land a grounded plane")
-    void landThrowsErrorWhenGrounded() throws LandingException, CapacityException {
-        Plane plane = new Plane();
-        Airport airport = mock(Airport.class);
-
-        plane.land(airport);
-
-        Assertions.assertThrows(LandingException.class, () -> plane.land(airport));
-    }
-
-    @Test
-    @DisplayName("It throws error when trying to take off an airborne plane")
+    @DisplayName("#takeOff() - throws error when plane is airborne")
     void takeOffThrowsErrorWhenAirborne() {
         Plane plane = new Plane();
         Airport airport = mock(Airport.class);
@@ -57,16 +69,7 @@ class PlaneTest {
     }
 
     @Test
-    void landCallsLandMethodToAirport() throws CapacityException, LandingException {
-        Plane plane = new Plane();
-        Airport airport = mock(Airport.class);
-
-        plane.land(airport);
-
-        verify(airport).land(plane);
-    }
-
-    @Test
+    @DisplayName("#takeOff() - makes take off method call to airport")
     void takeOffCallsTakeOffToAirport() throws LandingException, CapacityException, AirportException, TakeOffException {
         Plane plane = new Plane();
         Airport airport = mock(Airport.class);

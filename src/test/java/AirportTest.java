@@ -6,14 +6,14 @@ import static org.mockito.Mockito.*;
 class AirportTest {
 
     @Test
-    @DisplayName("Hangar is empty by default")
+    @DisplayName("#hangar() - it is empty by default")
     void hangarIsEmptyByDefault() {
         Airport airport = new Airport();
         Assertions.assertEquals(airport.hangar().size(), 0);
     }
 
     @Test
-    @DisplayName("Plane is added to hangar after landing")
+    @DisplayName("#land() - plane is added to hangar after landing")
     void successfulLanding() throws CapacityException {
         Airport airport = new Airport();
         Plane plane = mock(Plane.class);
@@ -24,7 +24,7 @@ class AirportTest {
     }
 
     @Test
-    @DisplayName("CapacityException is thrown when capacity is full")
+    @DisplayName("#land() - CapacityException is thrown when capacity is full")
     void landingWhenCapacityFull() throws CapacityException {
         Airport airport = new Airport();
 
@@ -39,7 +39,7 @@ class AirportTest {
     }
 
     @Test
-    @DisplayName("Plane is removed from hangar after take off")
+    @DisplayName("#takeOff() - plane is removed from hangar after take off")
     void successfulTakeOff() throws CapacityException, AirportException {
         Airport airport = new Airport();
         Plane plane = mock(Plane.class);
@@ -52,6 +52,7 @@ class AirportTest {
     }
 
     @Test
+    @DisplayName("#takeOff() - exception thrown if plane is not in airport")
     void takeOffWhenPlaneNotInAirport() throws CapacityException {
         Airport airport1 = new Airport();
         Airport airport2 = new Airport();
