@@ -8,8 +8,7 @@ class Weather {
     }
 
     public String forecast() {
-        if (atmosphericPressure() > 10) return "Sunny";
-        return "sunny";
+        return atmosphericPressure() > 10 ? "Sunny" : "Stormy";
     }
 
     private int atmosphericPressure() {
