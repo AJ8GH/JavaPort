@@ -17,18 +17,22 @@ class Airport {
 
     public void land(Plane plane) throws CapacityException, WeatherException {
         if (full()) throw new CapacityException();
-        if (weather.forecast().equals("Stormy")) throw new WeatherException();
+        if (weatherIsStormy()) throw new WeatherException();
         hangar.add(plane);
     }
 
     public void takeOff(Plane plane) throws AirportException, WeatherException {
         if (!contains(plane)) throw new AirportException();
-        if (weather.forecast().equals("Stormy")) throw new WeatherException();
+        if (weatherIsStormy()) throw new WeatherException();
         hangar.remove(plane);
     }
 
     public boolean contains(Plane plane) {
         return hangar().contains(plane);
+    }
+
+    private boolean weatherIsStormy() {
+        return weather.forecast().equals("Stormy");
     }
 
     private boolean full() {
