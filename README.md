@@ -1,5 +1,7 @@
 # JavaPort
 
+[![Build Status](https://app.travis-ci.com/AJ8GH/JavaPort.svg?branch=main)](https://app.travis-ci.com/AJ8GH/JavaPort)
+
 Landing planes with a Java built air traffic control system
 
 ## Getting started
