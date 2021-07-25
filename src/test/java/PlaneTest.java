@@ -9,35 +9,36 @@ class PlaneTest {
     @DisplayName("#status - It is Air by default")
     void statusIsGroundByDefault() {
         Plane plane = new Plane();
-        Assertions.assertEquals("Air", plane.status());
+        Assertions.assertEquals("Air", plane.getStatus());
     }
 
     @Test
     @DisplayName("#land() - changes status to Ground")
-    void landChangesStatusToGround() throws LandingException, CapacityException, WeatherException {
+    void landChangesStatusToGround() throws Exception {
         Plane plane = new Plane();
         Airport airport = mock(Airport.class);
 
         plane.land(airport);
 
-        Assertions.assertEquals("Ground", plane.status());
+        Assertions.assertEquals("Ground", plane.getStatus());
     }
 
 
     @Test
     @DisplayName("#land() - throws error when plane is grounded")
-    void landThrowsErrorWhenGrounded() throws LandingException, CapacityException, WeatherException {
+    void landThrowsErrorWhenGrounded() throws Exception {
         Plane plane = new Plane();
         Airport airport = mock(Airport.class);
 
         plane.land(airport);
 
-        Assertions.assertThrows(LandingException.class, () -> plane.land(airport));
+        Assertions.assertThrows(LandingException.class,
+                () -> plane.land(airport));
     }
 
     @Test
     @DisplayName("#land() - makes land method call to airport")
-    void landCallsLandMethodToAirport() throws CapacityException, LandingException, WeatherException {
+    void landCallsLandMethodToAirport() throws Exception {
         Plane plane = new Plane();
         Airport airport = mock(Airport.class);
 
@@ -48,15 +49,15 @@ class PlaneTest {
 
     @Test
     @DisplayName("#takeOff() - changes status to Air")
-    void takeOffChangesStatus() throws TakeOffException, LandingException, CapacityException, AirportException, WeatherException {
+    void takeOffChangesStatus() throws Exception {
         Plane plane = new Plane();
         Airport airport = mock(Airport.class);
 
         plane.land(airport);
-        Assertions.assertEquals("Ground", plane.status());
+        Assertions.assertEquals("Ground", plane.getStatus());
 
         plane.takeOff(airport);
-        Assertions.assertEquals("Air", plane.status());
+        Assertions.assertEquals("Air", plane.getStatus());
     }
 
     @Test
@@ -65,12 +66,13 @@ class PlaneTest {
         Plane plane = new Plane();
         Airport airport = mock(Airport.class);
 
-        Assertions.assertThrows(TakeOffException.class, () -> plane.takeOff(airport));
+        Assertions.assertThrows(TakeOffException.class,
+                () -> plane.takeOff(airport));
     }
 
     @Test
     @DisplayName("#takeOff() - makes take off method call to airport")
-    void takeOffCallsTakeOffToAirport() throws LandingException, CapacityException, AirportException, TakeOffException, WeatherException {
+    void takeOffCallsTakeOffToAirport() throws Exception {
         Plane plane = new Plane();
         Airport airport = mock(Airport.class);
 

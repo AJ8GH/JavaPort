@@ -6,17 +6,8 @@ import static org.mockito.Mockito.*;
 class AirportTest {
 
     @Test
-    @DisplayName("#hangar() - it is empty by default")
-    void hangarIsEmptyByDefault() {
-        Weather weather = mock(Weather.class);
-        Airport airport = new Airport(weather);
-
-        Assertions.assertEquals(0, airport.hangar().size());
-    }
-
-    @Test
     @DisplayName("#land() - plane is added to hangar after landing")
-    void successfulLanding() throws CapacityException, WeatherException {
+    void successfulLanding() throws Exception {
         Weather weather = mock(Weather.class);
         Airport airport = new Airport(weather);
         when(weather.forecast()).thenReturn("Sunny");
@@ -29,7 +20,7 @@ class AirportTest {
 
     @Test
     @DisplayName("#land() - CapacityException is thrown when capacity is full")
-    void landingWhenCapacityFull() throws CapacityException, WeatherException {
+    void landingWhenCapacityFull() throws Exception {
         Weather weather = mock(Weather.class);
         Airport airport = new Airport(weather);
         when(weather.forecast()).thenReturn("Sunny");
@@ -41,12 +32,13 @@ class AirportTest {
 
         Plane plane = mock(Plane.class);
 
-        Assertions.assertThrows(CapacityException.class, () -> airport.land(plane));
+        Assertions.assertThrows(CapacityException.class,
+                () -> airport.land(plane));
     }
 
     @Test
     @DisplayName("#takeOff() - plane is removed from hangar after take off")
-    void successfulTakeOff() throws CapacityException, AirportException, WeatherException {
+    void successfulTakeOff() throws Exception {
         Weather weather = mock(Weather.class);
         Airport airport = new Airport(weather);
         when(weather.forecast()).thenReturn("Sunny");
@@ -61,7 +53,7 @@ class AirportTest {
 
     @Test
     @DisplayName("#takeOff() - exception thrown if plane is not in airport")
-    void takeOffWhenPlaneNotInAirport() throws CapacityException, WeatherException {
+    void takeOffWhenPlaneNotInAirport() throws Exception {
         Weather weather = mock(Weather.class);
         when(weather.forecast()).thenReturn("Sunny");
         Airport airport1 = new Airport(weather);
@@ -70,12 +62,13 @@ class AirportTest {
 
         airport1.land(plane);
 
-        Assertions.assertThrows(AirportException.class, () -> airport2.takeOff(plane));
+        Assertions.assertThrows(AirportException.class,
+                () -> airport2.takeOff(plane));
     }
 
     @Test
     @DisplayName("#takeOff() - exception thrown if weather is stormy")
-    void takeOffWhenWeatherStormy() throws WeatherException, CapacityException {
+    void takeOffWhenWeatherStormy() throws Exception {
         Weather weather = mock(Weather.class);
         Airport airport = new Airport(weather);
         Plane plane = mock(Plane.class);
@@ -84,7 +77,8 @@ class AirportTest {
         airport.land(plane);
         when(weather.forecast()).thenReturn("Stormy");
 
-        Assertions.assertThrows(WeatherException.class, () -> airport.takeOff(plane));
+        Assertions.assertThrows(WeatherException.class,
+                () -> airport.takeOff(plane));
     }
 
     @Test
@@ -96,6 +90,7 @@ class AirportTest {
 
         when(weather.forecast()).thenReturn("Stormy");
 
-        Assertions.assertThrows(WeatherException.class, () -> airport.land(plane));
+        Assertions.assertThrows(WeatherException.class,
+                () -> airport.land(plane));
     }
 }

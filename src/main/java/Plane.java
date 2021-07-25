@@ -1,23 +1,17 @@
 class Plane {
-    private String status;
+    private String status = "Air";
 
-    Plane() {
-        this.status = "Air";
-    }
-
-    public String status() {
+    public String getStatus() {
         return status;
     }
 
-    public void takeOff(Airport airport)
-            throws TakeOffException, AirportException, WeatherException {
+    public void takeOff(Airport airport) throws Exception {
         if (status.equals("Air")) throw new TakeOffException();
         airport.takeOff(this);
         this.status = "Air";
     }
 
-    public void land(Airport airport)
-            throws LandingException, CapacityException, WeatherException {
+    public void land(Airport airport) throws Exception {
         if (status.equals("Ground")) throw new LandingException();
         airport.land(this);
         this.status = "Ground";
